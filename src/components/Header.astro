@@ -1,0 +1,201 @@
+---
+const navItems = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Quiénes Somos', href: '/quienes-somos' },
+  { name: 'Historia', href: '/historia' },
+  { name: 'Actividades', href: '/actividades' },
+  { name: 'Galería', href: '/galeria' },
+  { name: 'Recursos', href: '/recursos' },
+  { name: 'Contacto', href: '/contacto' },
+];
+---
+
+<header id="main-header" class="fixed-header">
+  <div class="container header-container">
+    <a href="/" class="logo">
+      <span class="logo-icon">⭐</span> <span class="logo-text">Club Rigel</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav">
+      <ul class="nav-list">
+        {navItems.map(item => (
+          <li><a href={item.href} class="nav-link">{item.name}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Mobile Toggle -->
+    <button id="mobile-toggle" class="mobile-toggle" aria-label="Menú">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Nav Overlay -->
+  <nav id="mobile-nav" class="mobile-nav">
+    <ul class="mobile-nav-list">
+      {navItems.map(item => (
+        <li><a href={item.href} class="mobile-nav-link">{item.name}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fixed-header.scrolled {
+    padding: 0.8rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-text {
+    letter-spacing: -0.02em;
+  }
+
+  /* Desktop Nav */
+  .desktop-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: block;
+    }
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    position: relative;
+    padding: 0.2rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-secondary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* Mobile Nav */
+  .mobile-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    padding: 5px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 70px; /* Adjust based on header height */
+    left: 0;
+    width: 100%;
+    background: rgba(27, 46, 82, 0.98);
+    backdrop-filter: blur(10px);
+    transform: translateY(-150%);
+    transition: transform 0.4s ease;
+    z-index: 999;
+    padding: 2rem 0;
+  }
+
+  .mobile-nav.is-open {
+    transform: translateY(0);
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  const header = document.getElementById('main-header');
+  const toggle = document.getElementById('mobile-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  // Scroll Effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile Menu
+  toggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('is-open');
+    // Simple hamburger animation toggle could go here
+  });
+</script>

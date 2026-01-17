@@ -1,0 +1,37 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionCard from '../components/SectionCard.astro';
+---
+
+<MainLayout title="Actividades">
+  <section class="section container">
+    <h1 class="page-title">Actividades y Eventos</h1>
+    <div class="grid-3">
+      <SectionCard title="Campamentos" icon="⛺">
+        <p>Experiencias inolvidables en contacto con la naturaleza.</p>
+      </SectionCard>
+      <SectionCard title="Servicio Comunitario" icon="🤝">
+        <p>Limpieza de parques, visitas a asilos y recolección de alimentos.</p>
+      </SectionCard>
+      <SectionCard title="Especialidades" icon="🏅">
+        <p>Desarrollo de habilidades técnicas, manuales y recreativas.</p>
+      </SectionCard>
+      <SectionCard title="Investiduras" icon="🧣">
+        <p>Reconocimiento al avance y logros de cada conquistador.</p>
+      </SectionCard>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 3rem;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Quiénes Somos">
+  <section class="section container">
+    <div class="content-wrapper">
+      <h1 class="page-title">Quiénes Somos</h1>
+      <p class="lead">
+        El Club de Conquistadores Rigel es parte de un movimiento mundial organizado por la Iglesia Adventista del Séptimo Día.
+      </p>
+      
+      <div class="grid-2">
+        <div class="glass p-8 rounded">
+          <h2>Nuestros Ideales</h2>
+          <p>
+            El Blanco: "El mensaje del advenimiento a todo el mundo en mi generación."
+            <br>
+            El Lema: "El amor de Cristo nos motiva."
+          </p>
+        </div>
+        <div class="glass p-8 rounded">
+          <h2>Nuestra Promesa</h2>
+          <p>
+            "Por la gracia de Dios, seré puro, bondadoso y leal. Guardaré la Ley del Conquistador, seré siervo de Dios y amigo de la humanidad."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  .lead {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 700px;
+  }
+  .grid-2 {
+    display: grid;
+    gap: 2rem;
+  }
+  @media(min-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+  }
+  .glass {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionCard from '../components/SectionCard.astro';
+
+const features = [
+  {
+    title: 'Aventuras',
+    desc: 'Campamentos, caminatas y exploración en la naturaleza.',
+    icon: '⛺',
+    link: '/actividades'
+  },
+  {
+    title: 'Liderazgo',
+    desc: 'Desarrollo de carácter y habilidades para la vida.',
+    icon: '⚜️',
+    link: '/quienes-somos'
+  },
+  {
+    title: 'Servicio',
+    desc: 'Ayuda a la comunidad y proyectos solidarios.',
+    icon: '🤝',
+    link: '/actividades'
+  }
+];
+---
+
+<MainLayout title="Inicio">
+  <Hero />
+  
+  <section class="section container">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <h2 class="section-title">Bienvenidos al Club Rigel</h2>
+        <p>
+          Somos una organización mundial dedicada al desarrollo físico, mental y espiritual de niños y jóvenes. 
+          En el Club Rigel, creemos en el potencial de cada conquistador para cambiar el mundo.
+        </p>
+      </div>
+      
+      <div class="cards-grid">
+        {features.map(feature => (
+          <SectionCard title={feature.title} icon={feature.icon} href={feature.link}>
+            <p>{feature.desc}</p>
+          </SectionCard>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-light">
+    <div class="container">
+      <h2 class="section-title text-center">Nuestra Misión</h2>
+      <div class="mission-wrapper">
+        <p class="mission-text">
+          "El mensaje del advenimiento a todo el mundo en mi generación."
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .intro-grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  @media (min-width: 900px) {
+    .intro-grid {
+      grid-template-columns: 1fr 1.5fr;
+      align-items: center;
+    }
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-text p {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 2rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .bg-light {
+    background-color: white;
+  }
+
+  .text-center { text-align: center; }
+
+  .mission-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: radial-gradient(circle at center, rgba(253, 229, 8, 0.1) 0%, transparent 70%);
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .mission-text {
+    font-size: 1.8rem;
+    font-style: italic;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+  }
+</style>

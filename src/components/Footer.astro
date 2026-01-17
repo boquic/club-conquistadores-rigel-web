@@ -1,0 +1,57 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="main-footer">
+  <div class="container footer-content">
+    <div class="footer-info">
+      <h3 class="footer-logo">Club Rigel</h3>
+      <p>Avanzando juntos hacia nuevas alturas.</p>
+    </div>
+    
+    <div class="footer-links">
+      <a href="/privacidad">Privacidad</a>
+      <a href="/terminos">Términos</a>
+    </div>
+
+    <div class="footer-copyright">
+      &copy; {year} Club de Conquistadores Rigel. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<style>
+  .main-footer {
+    background-color: var(--color-bg-dark);
+    color: white;
+    padding: 3rem 0;
+    margin-top: auto;
+  }
+
+  .footer-content {
+    display: grid;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .footer-copyright {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+  }
+</style>

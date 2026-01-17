@@ -1,0 +1,134 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 class="hero-title animate-fade-up">
+      Club <span class="text-gradient">Rigel</span>
+    </h1>
+    <p class="hero-subtitle animate-fade-up delay-1">
+      Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
+    </p>
+    <div class="hero-actions animate-fade-up delay-2">
+      <a href="/quienes-somos" class="btn btn-primary">Conócenos</a>
+      <a href="/contacto" class="btn btn-secondary">Únete Ahora</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-hero, linear-gradient(135deg, #1B2E52 0%, #0f1c35 100%));
+    background-image: url('/public/bg-hero-pattern.png'), var(--gradient-hero, linear-gradient(135deg, #1B2E52 0%, #0f1c35 100%)); /* Fallback pattern if exists, else gradient */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding-top: 80px; /* Offset for fixed header */
+    overflow: hidden;
+  }
+
+  /* Dynamic geometric background effect using pseudo-elements */
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(190, 22, 34, 0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+  }
+
+  .hero::before {
+    top: -100px;
+    left: -100px;
+  }
+
+  .hero::after {
+    bottom: -100px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(253, 229, 8, 0.1) 0%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem); /* Responsive typography */
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    background: var(--color-secondary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(190, 22, 34, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(190, 22, 34, 0.6);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+  }
+
+  /* Animations */
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Historia">
+  <section class="section container">
+    <h1 class="page-title">Nuestra Historia</h1>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">2010</div>
+        <h3>Fundación</h3>
+        <p>El Club Rigel abre sus puertas con 15 miembros iniciales.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2015</div>
+        <h3>Primer Camporee</h3>
+        <p>Participación destacada en el Camporee Regional.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2023</div>
+        <h3>Actualidad</h3>
+        <p>Hoy contamos con más de 50 conquistadores activos y diversas unidades.</p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 3rem;
+  }
+  .timeline {
+    border-left: 2px solid var(--color-secondary);
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .timeline-item {
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.6rem;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    background: var(--color-secondary);
+    border-radius: 50%;
+    border: 2px solid white;
+  }
+  .date {
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Galería">
+  <section class="section container">
+    <h1 class="page-title">Galería de Fotos</h1>
+    <p>Próximamente fotos de nuestros eventos.</p>
+    <div class="gallery-placeholder">
+       <div class="placeholder-item"></div>
+       <div class="placeholder-item"></div>
+       <div class="placeholder-item"></div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
+  .gallery-placeholder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .placeholder-item {
+    aspect-ratio: 1;
+    background: #e2e8f0;
+    border-radius: 8px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Recursos">
+  <section class="section container">
+    <h1 class="page-title">Recursos</h1>
+    <ul class="resources-list">
+      <li class="resource-item">
+        <a href="#">📘 Manual Administrativo</a>
+      </li>
+      <li class="resource-item">
+        <a href="#">📝 Ficha Médica</a>
+      </li>
+      <li class="resource-item">
+        <a href="#">📅 Calendario 2026</a>
+      </li>
+    </ul>
+  </section>
+</MainLayout>
+
+<style>
+  .page-title {
+    font-size: 3rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
+  .resources-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .resource-item a {
+    display: block;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+  .resource-item a:hover {
+    border-color: var(--color-primary);
+    background: #f8fafc;
+  }
+</style>
