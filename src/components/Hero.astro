@@ -1,4 +1,8 @@
-<section class="hero">
+---
+import heroBg from '../../public/WhatsApp Image 2026-01-17 at 7.57.48 PM.jpeg';
+---
+
+<section class="hero" style={`background-image: url(${heroBg.src})`}>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
     <h1 class="hero-title animate-fade-up">
@@ -22,7 +26,6 @@
     align-items: center;
     justify-content: center;
     background: var(--gradient-hero, linear-gradient(135deg, #1B2E52 0%, #0f1c35 100%));
-    background-image: url('/club-conquistadores-rigel-web/bg-hero-pattern.png'), var(--gradient-hero, linear-gradient(135deg, #1B2E52 0%, #0f1c35 100%)); /* Fallback pattern if exists, else gradient */
     background-size: cover;
     background-position: center;
     color: white;
