@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import rigelLogo from '../assets/rigel.png';
+import conquisLogo from '../assets/conquis.svg';
 
 const navItems = [
   { name: 'Inicio', href: '/' },
@@ -14,7 +15,10 @@ const navItems = [
 <header id="main-header" class="header">
   <div class="container header-container">
     <a href="/" class="logo-link">
-      <Image src={rigelLogo} alt="Club Rigel" class="logo-img" />
+      <div class="logo-wrapper">
+        <Image src={rigelLogo} alt="Club Rigel" class="logo-img" />
+        <Image src={conquisLogo} alt="Conquistadores" class="logo-conquis" />
+      </div>
     </a>
 
     <!-- Desktop Nav: Floating Pill -->
@@ -72,15 +76,32 @@ const navItems = [
   }
 
   /* Logo */
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
   .logo-img {
     height: 80px;
     width: auto;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-    transition: start 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  .logo-conquis {
+    height: 70px; /* Slightly smaller to balance visual weight */
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    transition: all 0.3s ease;
   }
 
   .header.scrolled .logo-img {
     height: 60px;
+  }
+
+  .header.scrolled .logo-conquis {
+    height: 50px;
   }
 
   /* Desktop Nav - Pill Design */
