@@ -1,4 +1,6 @@
 ---
+import rigelLogo from '../../../public/rigel.png';
+
 const navItems = [
   { name: 'Inicio', href: '/' },
   { name: 'Quiénes Somos', href: '/quienes-somos' },
@@ -13,7 +15,7 @@ const navItems = [
 <header id="main-header" class="fixed-header">
   <div class="container header-container">
     <a href="/" class="logo">
-      <img src="/club-conquistadores-rigel-web/rigel.png" alt="Club Rigel" style="height: 60px; width: auto;" />
+      <img src={rigelLogo} alt="Club Rigel" style="height: 60px; width: auto;" />
     </a>
 
     <!-- Desktop Nav -->
