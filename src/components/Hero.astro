@@ -1,155 +1,71 @@
 ---
+import { Image } from 'astro:assets';
+import heroBg from '../assets/fondo1.jpeg';
 ---
 
-<section class="hero">
-  <div class="hero-overlay"></div>
+<section class="hero-section">
+  <!-- Background Image with Overlay -->
+  <div class="hero-bg-wrapper">
+    <Image 
+      src={heroBg} 
+      alt="Conquistadores en la naturaleza" 
+      class="hero-bg-image" 
+      quality="mid"
+      format="webp"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
   <div class="container hero-content">
-    <h1 class="hero-title animate-fade-up">
-      Club <span class="text-gradient">Rigel</span>
-    </h1>
-    <p class="hero-subtitle animate-fade-up delay-1">
-      Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
-    </p>
-    <div class="hero-actions animate-fade-up delay-2">
-      <a href="/quienes-somos" class="btn btn-primary">Conócenos</a>
-      <a href="/contacto" class="btn btn-secondary">Únete Ahora</a>
-    </div>
+    <slot />
   </div>
 </section>
 
 <style>
-  .hero {
+  .hero-section {
     position: relative;
-    min-height: 90vh;
+    height: 100vh;
+    min-height: 600px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(27, 46, 82, 0.7) 0%, rgba(15, 28, 53, 0.7) 100%), url('/club-conquistadores-rigel-web/fondo1.jpeg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding-top: 80px; /* Offset for fixed header */
     overflow: hidden;
   }
 
-  /* Dynamic geometric background effect using pseudo-elements */
-  .hero::before, .hero::after {
-    content: '';
+  .hero-bg-wrapper {
     position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(190, 22, 34, 0.15) 0%, transparent 70%);
-    filter: blur(60px);
-    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
   }
 
-  .hero::before {
-    top: -100px;
-    left: -100px;
+  .hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .hero::after {
-    bottom: -100px;
-    right: -100px;
-    background: radial-gradient(circle, rgba(253, 229, 8, 0.1) 0%, transparent 70%);
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradient similar to prototype: dark blue tint to transparent */
+    background: linear-gradient(
+      to bottom,
+      rgba(27, 46, 82, 0.4) 0%,
+      rgba(27, 46, 82, 0.6) 100%
+    );
   }
 
   .hero-content {
     position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 800px;
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem); /* Responsive typography */
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.08em;
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 50%, #fde508 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 10px 25px rgba(253, 229, 8, 0.25));
-    transform: perspective(1200px) rotateX(2deg);
-    animation: heroTitleGlow 3s ease-in-out infinite;
-  }
-
-  @keyframes heroTitleGlow {
-    0%, 100% {
-      filter: drop-shadow(0 10px 25px rgba(253, 229, 8, 0.25));
-      text-shadow: 0 0 30px rgba(253, 229, 8, 0.2);
-    }
-    50% {
-      filter: drop-shadow(0 15px 35px rgba(253, 229, 8, 0.35));
-      text-shadow: 0 0 50px rgba(253, 229, 8, 0.3);
-    }
-  }
-
-  .hero-subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
-    font-size: 0.9rem;
-  }
-
-  .btn-primary {
-    background: var(--color-secondary);
-    color: white;
-    box-shadow: 0 4px 15px rgba(190, 22, 34, 0.4);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(190, 22, 34, 0.6);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.2);
-    color: white;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: white;
-  }
-
-  /* Animations */
-  .animate-fade-up {
-    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  .delay-1 { animation-delay: 0.2s; }
-  .delay-2 { animation-delay: 0.4s; }
-
-  @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    z-index: 10;
+    width: 100%;
+    /* Alignment handles by parent flex */
   }
 </style>

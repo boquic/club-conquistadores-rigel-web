@@ -1,37 +1,42 @@
 ---
-const rigelLogo = '/club-conquistadores-rigel-web/rigel.png';
+import { Image } from 'astro:assets';
+import rigelLogo from '../assets/rigel.png';
 
 const navItems = [
   { name: 'Inicio', href: '/' },
-  { name: 'Quiénes Somos', href: '/quienes-somos' },
+  { name: 'Quienes somos', href: '/quienes-somos' },
   { name: 'Historia', href: '/historia' },
-  { name: 'Actividades', href: '/actividades' },
-  { name: 'Galería', href: '/galeria' },
   { name: 'Recursos', href: '/recursos' },
   { name: 'Contacto', href: '/contacto' },
 ];
 ---
 
-<header id="main-header" class="fixed-header">
+<header id="main-header" class="header">
   <div class="container header-container">
-    <a href="/" class="logo">
-      <img src={rigelLogo} alt="Club Rigel" style="height: 60px; width: auto;" />
+    <a href="/" class="logo-link">
+      <Image src={rigelLogo} alt="Club Rigel" class="logo-img" />
     </a>
 
-    <!-- Desktop Nav -->
+    <!-- Desktop Nav: Floating Pill -->
     <nav class="desktop-nav">
-      <ul class="nav-list">
+      <ul class="nav-pill">
         {navItems.map(item => (
-          <li><a href={item.href} class="nav-link">{item.name}</a></li>
+          <li>
+            <a href={item.href} class={`nav-link ${Astro.url.pathname === item.href ? 'active' : ''}`}>
+              {item.name}
+            </a>
+          </li>
         ))}
       </ul>
     </nav>
 
     <!-- Mobile Toggle -->
     <button id="mobile-toggle" class="mobile-toggle" aria-label="Menú">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
     </button>
   </div>
 
@@ -46,23 +51,18 @@ const navItems = [
 </header>
 
 <style>
-  .fixed-header {
+  .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 1.5rem 0;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 2rem 0;
+    transition: padding 0.3s ease;
   }
 
-  .fixed-header.scrolled {
-    padding: 0.8rem 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: var(--shadow-sm);
+  .header.scrolled {
+    padding: 1rem 0;
   }
 
   .header-container {
@@ -71,98 +71,119 @@ const navItems = [
     align-items: center;
   }
 
-  .logo {
-    font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  /* Logo */
+  .logo-img {
+    height: 80px;
+    width: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    transition: start 0.3s ease;
   }
 
-  .logo-text {
-    letter-spacing: -0.02em;
+  .header.scrolled .logo-img {
+    height: 60px;
   }
 
-  /* Desktop Nav */
+  /* Desktop Nav - Pill Design */
   .desktop-nav {
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 850px) {
     .desktop-nav {
       display: block;
     }
+  }
+
+  .nav-pill {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    list-style: none;
+    gap: 0.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15), 0 5px 10px -5px rgba(0,0,0,0.1);
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-secondary);
+    background: rgba(0,0,0,0.03);
+  }
+
+  /* Active State - Dark Pill styling from prototype reference if 'Inicio' was selected */
+  .nav-link.active { 
+    background: var(--color-primary);
+    color: white;
+  }
+  
+  /* Apply dark bg to the first item specifically if needed to match image exactly, 
+     but logic-based active state is better. 
+     Prototype shows "Inicio" with a dark background.
+  */
+  
+  /* Mobile Toggle */
+  .mobile-toggle {
+    display: block;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 850px) {
     .mobile-toggle {
       display: none;
     }
   }
 
-  .nav-list {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  .nav-link {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--color-text-dark);
-    position: relative;
-    padding: 0.2rem 0;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-secondary);
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .nav-link:hover {
-    color: var(--color-primary);
-  }
-
-  /* Mobile Nav */
-  .mobile-toggle {
+  .hamburger {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background: none;
-    padding: 5px;
   }
 
   .bar {
-    width: 25px;
+    width: 24px;
     height: 2px;
     background-color: var(--color-primary);
     transition: all 0.3s ease;
   }
 
+  /* Mobile Nav */
   .mobile-nav {
     position: fixed;
-    top: 70px; /* Adjust based on header height */
+    top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
     background: rgba(27, 46, 82, 0.98);
-    backdrop-filter: blur(10px);
-    transform: translateY(-150%);
-    transition: transform 0.4s ease;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
     z-index: 999;
-    padding: 2rem 0;
   }
 
   .mobile-nav.is-open {
-    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .mobile-nav-list {
@@ -170,34 +191,39 @@ const navItems = [
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .mobile-nav-link {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: white;
     font-weight: 700;
   }
 </style>
 
 <script>
-  const header = document.getElementById('main-header');
-  const toggle = document.getElementById('mobile-toggle');
+  const mobileToggle = document.getElementById('mobile-toggle');
   const mobileNav = document.getElementById('mobile-nav');
+  const header = document.getElementById('main-header');
 
-  // Scroll Effect
+  mobileToggle?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('is-open');
+    document.body.style.overflow = mobileNav?.classList.contains('is-open') ? 'hidden' : '';
+  });
+
+  mobileNav?.addEventListener('click', (e) => {
+    if (e.target === mobileNav) {
+      mobileNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  });
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
+    if (window.scrollY > 50) {
       header?.classList.add('scrolled');
     } else {
       header?.classList.remove('scrolled');
     }
-  });
-
-  // Mobile Menu
-  toggle?.addEventListener('click', () => {
-    mobileNav?.classList.toggle('is-open');
-    // Simple hamburger animation toggle could go here
   });
 </script>

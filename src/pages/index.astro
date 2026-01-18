@@ -26,7 +26,18 @@ const features = [
 ---
 
 <MainLayout title="Inicio">
-  <Hero />
+  <Hero>
+    <h1 class="hero-title animate-fade-up">
+      Club <span class="text-gradient">Rigel</span>
+    </h1>
+    <p class="hero-subtitle animate-fade-up delay-1">
+      Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
+    </p>
+    <div class="hero-actions animate-fade-up delay-2">
+      <a href="/quienes-somos" class="btn btn-primary">Conócenos</a>
+      <a href="/contacto" class="btn btn-secondary">Únete Ahora</a>
+    </div>
+  </Hero>
   
   <section class="section container">
     <div class="intro-grid">
@@ -48,10 +59,10 @@ const features = [
     </div>
   </section>
 
-  <section class="section bg-light">
+  <section class="section mission-section">
     <div class="container">
-      <h2 class="section-title text-center">Nuestra Misión</h2>
-      <div class="mission-wrapper">
+      <div class="mission-wrapper glass-panel">
+        <h2 class="section-title text-center">Nuestra Misión</h2>
         <p class="mission-text">
           "El mensaje del advenimiento a todo el mundo en mi generación."
         </p>
@@ -83,33 +94,105 @@ const features = [
     font-size: 1.1rem;
     color: #4a5568;
     margin-bottom: 2rem;
+    line-height: 1.8;
   }
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
   }
 
-  .bg-light {
-    background-color: white;
+  .mission-section {
+    background: radial-gradient(circle at top right, rgba(190, 22, 34, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at bottom left, rgba(27, 46, 82, 0.05) 0%, transparent 40%);
   }
 
   .text-center { text-align: center; }
 
   .mission-wrapper {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 3rem;
-    background: radial-gradient(circle at center, rgba(253, 229, 8, 0.1) 0%, transparent 70%);
+    padding: 4rem;
     border-radius: 20px;
     text-align: center;
   }
 
   .mission-text {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-style: italic;
     font-family: var(--font-heading);
     color: var(--color-primary);
+    margin-top: 1rem;
+  }
+
+  /* Hero Animations */
+  .hero-title {
+    font-family: 'Bebas Neue', 'Outfit', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .btn-primary {
+    background: var(--color-secondary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(190, 22, 34, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(190, 22, 34, 0.6);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
