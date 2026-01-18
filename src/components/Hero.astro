@@ -68,6 +68,24 @@
     line-height: 1.1;
     margin-bottom: 1.5rem;
     letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 50%, #fde508 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 10px 25px rgba(253, 229, 8, 0.25));
+    transform: perspective(1200px) rotateX(2deg);
+    animation: heroTitleGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes heroTitleGlow {
+    0%, 100% {
+      filter: drop-shadow(0 10px 25px rgba(253, 229, 8, 0.25));
+      text-shadow: 0 0 30px rgba(253, 229, 8, 0.2);
+    }
+    50% {
+      filter: drop-shadow(0 15px 35px rgba(253, 229, 8, 0.35));
+      text-shadow: 0 0 50px rgba(253, 229, 8, 0.3);
+    }
   }
 
   .hero-subtitle {
