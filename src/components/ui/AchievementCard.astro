@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  year?: string;
+  level?: 'bronze' | 'silver' | 'gold' | 'platinum';
+  class?: string;
+}
+
+const { 
+  title, 
+  description, 
+  icon,
+  year,
+  level = 'bronze',
+  class: className 
+} = Astro.props;
+
+const levelColors = {
+  bronze: 'from-amber-700 to-amber-900',
+  silver: 'from-gray-300 to-gray-500',
+  gold: 'from-yellow-400 to-yellow-600',
+  platinum: 'from-cyan-300 to-cyan-500'
+};
+
+const levelBorders = {
+  bronze: 'border-amber-600',
+  silver: 'border-gray-400',
+  gold: 'border-yellow-500',
+  platinum: 'border-cyan-400'
+};
+---
+
+<div class={`achievement-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift border-2 ${levelBorders[level]} ${className || ''}`}>
+  <!-- Header with Level Badge -->
+  <div class={`achievement-header bg-gradient-to-r ${levelColors[level]} p-4 flex items-center justify-between`}>
+    {icon && (
+      <div class="achievement-icon text-4xl">{icon}</div>
+    )}
+    {year && (
+      <span class="achievement-year bg-white/20 text-white px-3 py-1 rounded-full text-sm font-bold">
+        {year}
+      </span>
+    )}
+  </div>
+  
+  <!-- Content -->
+  <div class="achievement-content p-6">
+    <h3 class="achievement-title text-xl text-primary font-bold mb-2">{title}</h3>
+    <p class="achievement-description text-gray-600 leading-relaxed">{description}</p>
+  </div>
+  
+  <!-- Level Badge -->
+  <div class="achievement-footer px-6 pb-4">
+    <span class={`achievement-level inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
+      level === 'gold' ? 'bg-yellow-100 text-yellow-800' :
+      level === 'silver' ? 'bg-gray-100 text-gray-800' :
+      level === 'platinum' ? 'bg-cyan-100 text-cyan-800' :
+      'bg-amber-100 text-amber-800'
+    }`}>
+      {level}
+    </span>
+  </div>
+</div>

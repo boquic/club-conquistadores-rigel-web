@@ -1,0 +1,51 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+  color?: 'primary' | 'accent' | 'highlight' | 'text' | 'white';
+  align?: 'left' | 'center' | 'right';
+  gradient?: boolean;
+  class?: string;
+}
+
+const { 
+  level = 2,
+  size = '3xl',
+  color = 'primary',
+  align = 'left',
+  gradient = false,
+  class: className 
+} = Astro.props;
+
+const Tag = `h${level}` as const;
+const baseClasses = 'font-heading font-bold leading-tight';
+const sizeClasses = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+  '2xl': 'text-2xl',
+  '3xl': 'text-3xl',
+  '4xl': 'text-4xl',
+  '5xl': 'text-5xl'
+};
+const colorClasses = {
+  primary: 'text-primary',
+  accent: 'text-accent',
+  highlight: 'text-highlight',
+  text: 'text-text',
+  white: 'text-white'
+};
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+const gradientClass = gradient ? 'text-gradient' : '';
+
+const titleClasses = `${baseClasses} ${sizeClasses[size]} ${colorClasses[color]} ${alignClasses[align]} ${gradientClass} ${className || ''}`;
+---
+
+<Tag class={titleClasses}>
+  <slot />
+</Tag>

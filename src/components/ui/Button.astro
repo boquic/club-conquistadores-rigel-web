@@ -1,0 +1,54 @@
+---
+interface Props {
+  variant?: 'primary' | 'accent' | 'highlight' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+}
+
+const { 
+  variant = 'primary', 
+  size = 'md', 
+  href, 
+  type = 'button',
+  disabled = false,
+  class: className,
+  icon,
+  iconPosition = 'left'
+} = Astro.props;
+
+const baseClasses = 'btn inline-flex items-center justify-center gap-2 font-heading font-semibold cursor-pointer transition-all duration-300 border-none';
+const variantClasses = {
+  primary: 'btn-primary bg-primary text-white hover:bg-primary/90 hover:shadow-primary',
+  accent: 'btn-accent bg-accent text-white hover:bg-accent/90 hover:shadow-accent',
+  highlight: 'btn-highlight bg-highlight text-text hover:bg-highlight/90 hover:shadow-highlight',
+  outline: 'btn-outline bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white',
+  ghost: 'btn-ghost bg-transparent text-text hover:bg-black/5'
+};
+const sizeClasses = {
+  sm: 'btn-sm px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'btn-lg px-8 py-4 text-lg'
+};
+const disabledClasses = disabled ? 'opacity-60 cursor-not-allowed' : 'hover-lift';
+
+const buttonClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className || ''}`;
+---
+
+{href ? (
+  <a href={href} class={buttonClasses} disabled={disabled}>
+    {icon && iconPosition === 'left' && <span>{icon}</span>}
+    <slot />
+    {icon && iconPosition === 'right' && <span>{icon}</span>}
+  </a>
+) : (
+  <button type={type} class={buttonClasses} disabled={disabled}>
+    {icon && iconPosition === 'left' && <span>{icon}</span>}
+    <slot />
+    {icon && iconPosition === 'right' && <span>{icon}</span>}
+  </button>
+)}

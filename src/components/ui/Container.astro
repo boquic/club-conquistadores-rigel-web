@@ -1,0 +1,29 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  class?: string;
+  centered?: boolean;
+}
+
+const { 
+  size = 'xl',
+  class: className,
+  centered = false
+} = Astro.props;
+
+const baseClasses = 'container w-full mx-auto px-4';
+const sizeClasses = {
+  sm: 'container-sm max-w-sm',
+  md: 'container-md max-w-md',
+  lg: 'container-lg max-w-lg',
+  xl: 'container-xl max-w-xl',
+  '2xl': 'container-2xl max-w-2xl'
+};
+const centeredClasses = centered ? 'text-center' : '';
+
+const containerClasses = `${baseClasses} ${sizeClasses[size]} ${centeredClasses} ${className || ''}`;
+---
+
+<div class={containerClasses}>
+  <slot />
+</div>

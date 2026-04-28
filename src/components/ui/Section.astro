@@ -1,0 +1,35 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  background?: 'default' | 'light' | 'dark' | 'gradient';
+  id?: string;
+}
+
+const { 
+  size = 'lg',
+  class: className,
+  background = 'default',
+  id
+} = Astro.props;
+
+const baseClasses = 'section';
+const sizeClasses = {
+  sm: 'section-sm py-8',
+  md: 'section-md py-12',
+  lg: 'section-lg py-16',
+  xl: 'section-xl py-32'
+};
+const backgroundClasses = {
+  default: '',
+  light: 'bg-light',
+  dark: 'bg-dark text-white',
+  gradient: 'bg-gradient-to-br from-primary/5 to-accent/5'
+};
+
+const sectionClasses = `${baseClasses} ${sizeClasses[size]} ${backgroundClasses[background]} ${className || ''}`;
+---
+
+<section id={id} class={sectionClasses}>
+  <slot />
+</section>
