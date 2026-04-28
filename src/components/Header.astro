@@ -12,21 +12,21 @@ const navItems = [
 ];
 ---
 
-<header id="main-header" class="header">
-  <div class="container header-container">
+<header id="main-header" class="header fixed top-0 left-0 w-full z-sticky transition-all duration-300 py-8">
+  <div class="container flex justify-between items-center">
     <a href="/" class="logo-link">
-      <div class="logo-wrapper">
-        <Image src={conquisLogo} alt="Conquistadores" class="logo-conquis" />
-        <Image src={rigelLogo} alt="Club Rigel" class="logo-img" />
+      <div class="flex items-center gap-4">
+        <Image src={conquisLogo} alt="Conquistadores" class="h-[70px] w-auto drop-shadow-md transition-all duration-300" />
+        <Image src={rigelLogo} alt="Club Rigel" class="h-[80px] w-auto drop-shadow-md transition-all duration-300" />
       </div>
     </a>
 
     <!-- Desktop Nav: Floating Pill -->
-    <nav class="desktop-nav">
-      <ul class="nav-pill">
+    <nav class="desktop-nav hidden lg:block">
+      <ul class="glass-panel flex items-center gap-2 px-4 py-2 rounded-full list-none shadow-xl">
         {navItems.map(item => (
           <li>
-            <a href={item.href} class={`nav-link ${Astro.url.pathname === item.href ? 'active' : ''}`}>
+            <a href={item.href} class={`nav-link px-5 py-2 rounded-full font-heading font-bold text-sm uppercase tracking-wide transition-all duration-200 ${Astro.url.pathname === item.href ? 'bg-primary text-white' : 'text-primary hover:text-accent hover:bg-black/5'}`}>
               {item.name}
             </a>
           </li>
@@ -35,192 +35,42 @@ const navItems = [
     </nav>
 
     <!-- Mobile Toggle -->
-    <button id="mobile-toggle" class="mobile-toggle" aria-label="Menú">
-      <div class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+    <button id="mobile-toggle" class="lg:hidden bg-white p-2.5 rounded-full shadow-md" aria-label="Menú">
+      <div class="flex flex-col gap-1">
+        <span class="w-6 h-0.5 bg-primary transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-primary transition-all duration-300"></span>
+        <span class="w-6 h-0.5 bg-primary transition-all duration-300"></span>
       </div>
     </button>
   </div>
 
   <!-- Mobile Nav Overlay -->
-  <nav id="mobile-nav" class="mobile-nav">
-    <ul class="mobile-nav-list">
+  <nav id="mobile-nav" class="mobile-nav fixed top-0 left-0 w-full h-screen bg-primary/98 backdrop-blur-xl flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 z-modal">
+    <ul class="list-none text-center flex flex-col gap-8">
       {navItems.map(item => (
-        <li><a href={item.href} class="mobile-nav-link">{item.name}</a></li>
+        <li><a href={item.href} class="mobile-nav-link font-heading text-5xl font-bold text-white">{item.name}</a></li>
       ))}
     </ul>
   </nav>
 </header>
 
 <style>
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 2rem 0;
-    transition: padding 0.3s ease;
-  }
-
   .header.scrolled {
-    padding: 1rem 0;
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
   }
 
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  /* Logo */
-  .logo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .logo-img {
-    height: 80px;
-    width: auto;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-    transition: all 0.3s ease;
-  }
-
-  .logo-conquis {
-    height: 70px; /* Slightly smaller to balance visual weight */
-    width: auto;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-    transition: all 0.3s ease;
-    order: -1; /* Explicitly ensure it's on the left */
-  }
-
-  .header.scrolled .logo-img {
-    height: 60px;
-  }
-
-  .header.scrolled .logo-conquis {
+  .header.scrolled img {
     height: 50px;
   }
 
-  /* Desktop Nav - Pill Design */
-  .desktop-nav {
-    display: none;
-  }
-
-  @media (min-width: 850px) {
-    .desktop-nav {
-      display: block;
-    }
-  }
-
-  .nav-pill {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    list-style: none;
-    gap: 0.5rem;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15), 0 5px 10px -5px rgba(0,0,0,0.1);
-  }
-
-  .nav-link {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    border-radius: 30px;
-    color: var(--color-primary);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    transition: all 0.2s ease;
-  }
-
-  .nav-link:hover {
-    color: var(--color-secondary);
-    background: rgba(0,0,0,0.03);
-  }
-
-  /* Active State - Dark Pill styling from prototype reference if 'Inicio' was selected */
-  .nav-link.active { 
-    background: var(--color-primary);
-    color: white;
-  }
-  
-  /* Apply dark bg to the first item specifically if needed to match image exactly, 
-     but logic-based active state is better. 
-     Prototype shows "Inicio" with a dark background.
-  */
-  
-  /* Mobile Toggle */
-  .mobile-toggle {
-    display: block;
-    background: white;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: var(--shadow-md);
-  }
-
-  @media (min-width: 850px) {
-    .mobile-toggle {
-      display: none;
-    }
-  }
-
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .bar {
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: all 0.3s ease;
-  }
-
-  /* Mobile Nav */
-  .mobile-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(27, 46, 82, 0.98);
-    backdrop-filter: blur(15px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 999;
+  .header.scrolled img:first-child {
+    height: 40px;
   }
 
   .mobile-nav.is-open {
     opacity: 1;
     pointer-events: auto;
-  }
-
-  .mobile-nav-list {
-    list-style: none;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .mobile-nav-link {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: white;
-    font-weight: 700;
   }
 </style>
 

@@ -2,113 +2,53 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="bg-dark text-white pt-16 pb-8 mt-auto">
   <div class="container">
-    <div class="footer-grid">
+    <div class="grid grid-cols-3 gap-12 mb-12">
       <!-- Brand -->
       <div class="footer-brand">
-        <div class="brand-title">Club Rigel</div>
-        <p class="brand-desc">
+        <div class="font-heading text-4xl text-accent mb-4 font-black">Club Rigel</div>
+        <p class="opacity-70 max-w-[300px] leading-relaxed">
           Más que un club, una familia. Formando el carácter y el servicio desde {year - 10}.
         </p>
       </div>
 
       <!-- Links -->
       <div class="footer-nav">
-        <h4>Navegación</h4>
-        <ul>
-          <li><a href="/quienes-somos">Quiénes Somos</a></li>
-          <li><a href="/historia">Historia</a></li>
-          <li><a href="/recursos">Recursos</a></li>
-          <li><a href="/contacto">Contacto</a></li>
+        <h4 class="text-white mb-6 text-lg">Navegación</h4>
+        <ul class="list-none flex flex-col gap-2">
+          <li><a href="/quienes-somos" class="text-white/60 text-sm hover:text-accent transition-colors">Quiénes Somos</a></li>
+          <li><a href="/historia" class="text-white/60 text-sm hover:text-accent transition-colors">Historia</a></li>
+          <li><a href="/recursos" class="text-white/60 text-sm hover:text-accent transition-colors">Recursos</a></li>
+          <li><a href="/contacto" class="text-white/60 text-sm hover:text-accent transition-colors">Contacto</a></li>
         </ul>
       </div>
 
       <!-- Legal -->
       <div class="footer-nav">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="/privacidad">Privacidad</a></li>
-          <li><a href="/terminos">Términos</a></li>
+        <h4 class="text-white mb-6 text-lg">Legal</h4>
+        <ul class="list-none flex flex-col gap-2">
+          <li><a href="/privacidad" class="text-white/60 text-sm hover:text-accent transition-colors">Privacidad</a></li>
+          <li><a href="/terminos" class="text-white/60 text-sm hover:text-accent transition-colors">Términos</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="footer-bottom">
+    <div class="border-t border-white/10 pt-8 text-center text-sm opacity-50">
       <p>&copy; {year} Club de Conquistadores Rigel. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background-color: var(--color-bg-dark);
-    color: white;
-    padding: 4rem 0 2rem;
-    margin-top: auto;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-  }
-
   @media (max-width: 768px) {
-    .footer-grid {
+    .grid-cols-3 {
       grid-template-columns: 1fr;
       text-align: center;
     }
-  }
-
-  .brand-title {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--color-accent);
-    margin-bottom: 1rem;
-    font-weight: 900;
-  }
-
-  .brand-desc {
-    opacity: 0.7;
-    max-width: 300px;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 768px) {
-    .brand-desc {
+    
+    .max-w-\[300px\] {
       margin: 0 auto;
     }
-  }
-
-  .footer-nav h4 {
-    color: var(--color-text-light);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-  }
-
-  .footer-nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .footer-nav a {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.95rem;
-  }
-
-  .footer-nav a:hover {
-    color: var(--color-accent);
-  }
-
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 2rem;
-    text-align: center;
-    font-size: 0.85rem;
-    opacity: 0.5;
   }
 </style>

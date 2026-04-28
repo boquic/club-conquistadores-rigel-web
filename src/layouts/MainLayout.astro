@@ -5,30 +5,167 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	type?: 'website' | 'article';
 }
 
-const { title } = Astro.props;
+const { 
+	title, 
+	description = 'Sitio oficial del Club de Conquistadores Rigel. Formando líderes, construyendo character, sirviendo a otros.',
+	image = '/og-image.jpg',
+	canonical = new URL(Astro.url.pathname, Astro.site).href,
+	type = 'website'
+} = Astro.props;
+
+const siteName = 'Club Conquistadores Rigel';
+const fullTitle = `${title} | ${siteName}`;
+const siteUrl = Astro.site;
+const ogImage = new URL(image, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 	<head>
+		<!-- ==================== META BASE ==================== -->
 		<meta charset="UTF-8" />
-		<meta name="description" content="Sitio oficial del Club de Conquistadores Rigel" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32x32.png`} />
-		<link rel="icon" type="image/png" sizes="192x192" href={`${import.meta.env.BASE_URL}favicon-192x192.png`} />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Club Rigel</title>
+		
+		<!-- ==================== FAVICONS ==================== -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		
+		<!-- ==================== CANONICAL ==================== -->
+		<link rel="canonical" href={canonical} />
+		
+		<!-- ==================== FONTS ==================== -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		
+		<!-- ==================== OPEN GRAPH / FACEBOOK ==================== -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={fullTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:locale" content="es_ES" />
+		
+		<!-- ==================== TWITTER ==================== -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonical} />
+		<meta name="twitter:title" content={fullTitle} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		
+		<!-- ==================== THEME COLOR ==================== -->
+		<meta name="theme-color" content="#1B2E52" />
+		
+		<!-- ==================== TITLE ==================== -->
+		<title>{fullTitle}</title>
+		
+		<!-- ==================== JSON-LD STRUCTURED DATA ==================== -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Organization",
+				"name": "Club Conquistadores Rigel",
+				"url": {siteUrl},
+				"description": {description},
+				"logo": "/logo.png"
+			}
+		</script>
 	</head>
-	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer />
+	<body class="bg-light text-dark">
+		<!-- ==================== THEME INITIALIZATION ==================== -->
+		<script define:vars={{ themeColor: '#1B2E52' }}>
+			// Set theme color on load
+			document.documentElement.style.setProperty('--color-primary', themeColor);
+			
+			// Detect system preference for dark mode
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
+		
+		<!-- ==================== SCROLL BEHAVIOR & ANIMATIONS ==================== -->
+		<script>
+			// Smooth scroll for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				});
+			});
+			
+			// Intersection Observer for scroll animations
+			const observerOptions = {
+				root: null,
+				rootMargin: '0px',
+				threshold: 0.1
+			};
+			
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+						observer.unobserve(entry.target);
+					}
+				});
+			}, observerOptions);
+			
+			// Observe elements with animate-on-scroll class
+			document.addEventListener('DOMContentLoaded', () => {
+				document.querySelectorAll('.animate-on-scroll').forEach(el => {
+					observer.observe(el);
+				});
+			});
+		</script>
+		
+		<!-- ==================== GLOBAL CONTAINER ==================== -->
+		<div class="global-wrapper">
+			<Header />
+			<main class="main-content">
+				<slot />
+			</main>
+			<Footer />
+		</div>
+		
+		<!-- ==================== GLOBAL STYLES ==================== -->
+		<style>
+			.global-wrapper {
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.main-content {
+				flex: 1;
+				width: 100%;
+			}
+			
+			html {
+				scroll-behavior: smooth;
+			}
+			
+			/* Dark mode support */
+			.dark {
+				--color-bg-light: #0f172a;
+				--color-text: #f8fafc;
+				--color-bg-white: #1e293b;
+			}
+		</style>
 	</body>
 </html>

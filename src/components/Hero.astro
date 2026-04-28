@@ -3,69 +3,21 @@ import { Image } from 'astro:assets';
 import heroBg from '../assets/fondo1.jpeg';
 ---
 
-<section class="hero-section">
+<section class="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
   <!-- Background Image with Overlay -->
-  <div class="hero-bg-wrapper">
+  <div class="absolute top-0 left-0 w-full h-full -z-10">
     <Image 
       src={heroBg} 
       alt="Conquistadores en la naturaleza" 
-      class="hero-bg-image" 
+      class="w-full h-full object-cover" 
       quality="mid"
       format="webp"
     />
-    <div class="hero-overlay"></div>
+    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary/40 to-primary/60"></div>
   </div>
 
-  <div class="container hero-content">
+  <div class="container relative z-10 w-full">
     <slot />
   </div>
 </section>
 
-<style>
-  .hero-section {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-bg-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-
-  .hero-bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradient similar to prototype: dark blue tint to transparent */
-    background: linear-gradient(
-      to bottom,
-      rgba(27, 46, 82, 0.4) 0%,
-      rgba(27, 46, 82, 0.6) 100%
-    );
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    /* Alignment handles by parent flex */
-  }
-</style>

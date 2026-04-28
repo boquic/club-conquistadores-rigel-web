@@ -5,8 +5,8 @@ import SectionCard from '../components/SectionCard.astro';
 
 <MainLayout title="Actividades">
   <section class="section container">
-    <h1 class="page-title">Actividades y Eventos</h1>
-    <div class="grid-3">
+    <h1 class="text-5xl text-primary mb-12 font-bold">Actividades y Eventos</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       <SectionCard title="Campamentos" icon="⛺">
         <p>Experiencias inolvidables en contacto con la naturaleza.</p>
       </SectionCard>
@@ -23,15 +23,3 @@ import SectionCard from '../components/SectionCard.astro';
   </section>
 </MainLayout>
 
-<style>
-  .page-title {
-    font-size: 3rem;
-    color: var(--color-primary);
-    margin-bottom: 3rem;
-  }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-</style>
