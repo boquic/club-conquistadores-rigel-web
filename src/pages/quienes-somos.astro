@@ -1,32 +1,170 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Section } from '../components/ui/Section.astro';
+import { Title } from '../components/ui/Title.astro';
+import { Card } from '../components/ui/Card.astro';
+import { Button } from '../components/ui/Button.astro';
+
+const pillars = [
+  {
+    icon: '📖',
+    title: 'Espiritual',
+    description: 'Desarrollo de una relación personal con Dios a través del estudio bíblico y la oración.'
+  },
+  {
+    icon: '💪',
+    title: 'Físico',
+    description: 'Actividades al aire libre, ejercicios y hábitos saludables para el bienestar integral.'
+  },
+  {
+    icon: '🧠',
+    title: 'Mental',
+    description: 'Desarrollo de habilidades intelectuales, especialidades y pensamiento crítico.'
+  },
+  {
+    icon: '❤️',
+    title: 'Social',
+    description: 'Trabajo en equipo, liderazgo y servicio a la comunidad.'
+  }
+];
+
+const units = [
+  { name: 'Amigos', age: '5-9 años', description: 'Iniciación en el mundo conquistador con actividades lúdicas' },
+  { name: 'Compañeros', age: '10-11 años', description: 'Desarrollo de habilidades y especialidades básicas' },
+  { name: 'Exploradores', age: '12-14 años', description: 'Liderazgo, aventuras y especialidades avanzadas' },
+  { name: 'Guías', age: '15-17 años', description: 'Mentoría, servicio y preparación para el futuro' }
+];
 ---
 
-<MainLayout title="Quiénes Somos">
-  <section class="section container">
-    <div>
-      <h1 class="text-5xl text-primary mb-4 font-bold">Quiénes Somos</h1>
-      <p class="text-xl mb-12 max-w-2xl">
-        El Club de Conquistadores Rigel es parte de un movimiento mundial organizado por la Iglesia Adventista del Séptimo Día.
+<MainLayout title="Quiénes Somos" description="Conoce al Club Conquistadores Rigel, sus ideales, promesa y filosofía de formación integral.">
+  <!-- Hero Section -->
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">
+        Quiénes Somos
+      </Title>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+        El Club de Conquistadores Rigel es parte de un movimiento mundial organizado por la Iglesia Adventista del Séptimo Día,
+        dedicado al desarrollo integral de niños y jóvenes.
       </p>
+    </div>
+  </Section>
+  
+  <!-- Ideals Section -->
+  <Section size="xl">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+          Nuestros Ideales
+        </Title>
+        <p class="text-lg text-gray-600">
+          Los principios fundamentales que guían cada una de nuestras actividades
+        </p>
+      </div>
       
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="glass-panel p-8 rounded-xl">
-          <h2 class="text-2xl text-primary mb-4 font-bold">Nuestros Ideales</h2>
-          <p class="leading-relaxed">
-            El Blanco: "El mensaje del advenimiento a todo el mundo en mi generación."
-            <br><br>
-            El Lema: "El amor de Cristo nos motiva."
+      <div class="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+        <Card variant="glass" padding="xl" hover={true}>
+          <div class="text-5xl mb-4">🎯</div>
+          <h3 class="text-2xl text-primary font-bold mb-4">El Blanco</h3>
+          <p class="text-xl text-gray-700 italic leading-relaxed">
+            "El mensaje del advenimiento a todo el mundo en mi generación."
           </p>
-        </div>
-        <div class="glass-panel p-8 rounded-xl">
-          <h2 class="text-2xl text-primary mb-4 font-bold">Nuestra Promesa</h2>
-          <p class="leading-relaxed">
-            "Por la gracia de Dios, seré puro, bondadoso y leal. Guardaré la Ley del Conquistador, seré siervo de Dios y amigo de la humanidad."
+        </Card>
+        
+        <Card variant="glass" padding="xl" hover={true}>
+          <div class="text-5xl mb-4">💕</div>
+          <h3 class="text-2xl text-primary font-bold mb-4">El Lema</h3>
+          <p class="text-xl text-gray-700 italic leading-relaxed">
+            "El amor de Cristo nos motiva."
           </p>
-        </div>
+        </Card>
       </div>
     </div>
-  </section>
+  </Section>
+  
+  <!-- Promise Section -->
+  <Section background="gradient">
+    <div class="container">
+      <div class="glass-panel max-w-4xl mx-auto p-12 md:p-16 rounded-3xl text-center">
+        <Title level={2} size="3xl" color="primary" align="center" class="mb-6">
+          Nuestra Promesa
+        </Title>
+        <p class="text-xl md:text-2xl text-gray-700 italic leading-relaxed font-heading">
+          "Por la gracia de Dios, seré puro, bondadoso y leal. Guardaré la Ley del Conquistador, 
+          seré siervo de Dios y amigo de la humanidad."
+        </p>
+      </div>
+    </div>
+  </Section>
+  
+  <!-- Four Pillars Section -->
+  <Section size="xl">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+          Los Cuatro Pilares
+        </Title>
+        <p class="text-lg text-gray-600">
+          Desarrollo integral: espíritu, cuerpo, mente y carácter social
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {pillars.map(pillar => (
+          <Card variant="default" padding="lg" hover={true}>
+            <div class="text-5xl mb-4">{pillar.icon}</div>
+            <h3 class="text-xl text-primary font-bold mb-3">{pillar.title}</h3>
+            <p class="text-gray-600 leading-relaxed text-sm">{pillar.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+  
+  <!-- Units Section -->
+  <Section>
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+          Nuestras Unidades
+        </Title>
+        <p class="text-lg text-gray-600">
+          Grupos organizados por edad para un desarrollo apropiado
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {units.map(unit => (
+          <Card variant="primary" padding="lg" hover={true}>
+            <div class="text-white">
+              <h3 class="text-2xl font-bold mb-2">{unit.name}</h3>
+              <div class="text-white/80 font-semibold mb-3">{unit.age}</div>
+              <p class="text-white/90 leading-relaxed text-sm">{unit.description}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+  
+  <!-- CTA Section -->
+  <Section size="lg">
+    <div class="container text-center">
+      <Title level={2} size="3xl" color="primary" align="center" class="mb-4">
+        ¿Quieres Ser Parte?
+      </Title>
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        Únete a nuestra familia y comienza tu viaje de crecimiento, aventura y servicio.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <Button href="/contacto" variant="accent" size="lg" icon="🚀">
+          Únete Ahora
+        </Button>
+        <Button href="/actividades" variant="outline" size="lg">
+          Ver Actividades
+        </Button>
+      </div>
+    </div>
+  </Section>
 </MainLayout>
 

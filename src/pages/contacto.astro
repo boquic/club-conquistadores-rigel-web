@@ -1,40 +1,196 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Section } from '../components/ui/Section.astro';
+import { Title } from '../components/ui/Title.astro';
+import { Card } from '../components/ui/Card.astro';
+import { Button } from '../components/ui/Button.astro';
+
+const contactInfo = [
+  {
+    icon: '📧',
+    title: 'Email',
+    value: 'info@olubrigel.com',
+    link: 'mailto:info@olubrigel.com'
+  },
+  {
+    icon: '📍',
+    title: 'Dirección',
+    value: 'Iglesia Central, Ciudad',
+    link: null
+  },
+  {
+    icon: '📱',
+    title: 'Teléfono',
+    value: '+1 234 567 890',
+    link: 'tel:+1234567890'
+  },
+  {
+    icon: '⏰',
+    title: 'Horario',
+    value: 'Sábados 2:00 PM - 6:00 PM',
+    link: null
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Cuál es la edad para unirse?',
+    answer: 'Aceptamos niños y jóvenes de 5 a 17 años, divididos en unidades por edad.'
+  },
+  {
+    question: '¿Cuánto cuesta participar?',
+    answer: 'La membresía es gratuita. Algunas actividades especiales pueden tener un costo mínimo.'
+  },
+  {
+    question: '¿Necesito experiencia previa?',
+    answer: 'No, todos son bienvenidos. Te enseñaremos todo lo que necesitas saber.'
+  }
+];
 ---
 
-<MainLayout title="Contacto">
-  <section class="section container">
-    <div class="grid gap-12 md:grid-cols-2">
-      <div>
-        <h1 class="text-5xl text-primary mb-4 font-bold">Contáctanos</h1>
-        <p class="mb-8">
-          ¿Tienes preguntas? ¡Queremos escucharte!
-          Escríbenos y nos pondremos en contacto contigo lo antes posible.
-        </p>
-        <div class="mb-4">
-          <strong class="font-semibold">Email:</strong> info@olubrigel.com
+<MainLayout title="Contacto" description="Contáctanos para más información sobre el Club Conquistadores Rigel. Estamos aquí para responder tus preguntas.">
+  <!-- Hero Section -->
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">
+        Contáctanos
+      </Title>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+        ¿Tienes preguntas? ¡Queremos escucharte! Escríbenos y nos pondremos en contacto 
+        contigo lo antes posible. Estamos aquí para ayudarte.
+      </p>
+    </div>
+  </Section>
+  
+  <!-- Contact Info & Form -->
+  <Section size="xl">
+    <div class="container">
+      <div class="grid gap-12 lg:grid-cols-2">
+        <!-- Contact Info -->
+        <div>
+          <Title level={2} size="3xl" color="primary" class="mb-8">
+            Información de Contacto
+          </Title>
+          
+          <div class="grid gap-4 mb-8">
+            {contactInfo.map(info => (
+              <Card variant="glass" padding="md" hover={true} class="flex items-center gap-4">
+                <div class="text-3xl">{info.icon}</div>
+                <div class="flex-1">
+                  <div class="text-sm text-gray-500 font-semibold">{info.title}</div>
+                  {info.link ? (
+                    <a href={info.link} class="text-primary font-semibold hover:text-accent transition-colors">
+                      {info.value}
+                    </a>
+                  ) : (
+                    <div class="text-primary font-semibold">{info.value}</div>
+                  )}
+                </div>
+              </Card>
+            ))}
+          </div>
+          
+          <Card variant="primary" padding="lg">
+            <div class="text-white">
+              <h3 class="text-xl font-bold mb-3">¿Prefieres visitarnos?</h3>
+              <p class="text-white/90 mb-4">
+                Ven a nuestras reuniones los sábados y conoce en persona a nuestro equipo.
+              </p>
+              <Button href="/actividades" variant="highlight" size="sm" class="w-full">
+                Ver Próxima Actividad
+              </Button>
+            </div>
+          </Card>
         </div>
-        <div class="mb-4">
-          <strong class="font-semibold">Dirección:</strong> Iglesia Central, Ciudad
+        
+        <!-- Contact Form -->
+        <div>
+          <Title level={2} size="3xl" color="primary" class="mb-8">
+            Envíanos un Mensaje
+          </Title>
+          
+          <Card variant="glass" padding="xl">
+            <form class="space-y-6">
+              <div class="input-group">
+                <label for="name" class="input-label">Nombre Completo</label>
+                <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors">
+              </div>
+              
+              <div class="input-group">
+                <label for="email" class="input-label">Email</label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors">
+              </div>
+              
+              <div class="input-group">
+                <label for="subject" class="input-label">Asunto</label>
+                <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors">
+                  <option value="">Selecciona un asunto</option>
+                  <option value="info">Información General</option>
+                  <option value="join">Quiero Unirme</option>
+                  <option value="volunteer">Voluntariado</option>
+                  <option value="other">Otro</option>
+                </select>
+              </div>
+              
+              <div class="input-group">
+                <label for="message" class="input-label">Mensaje</label>
+                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:outline-none transition-colors resize-none"></textarea>
+              </div>
+              
+              <Button type="submit" variant="accent" size="lg" class="w-full" icon="📤">
+                Enviar Mensaje
+              </Button>
+            </form>
+          </Card>
         </div>
       </div>
-
-      <form class="glass-panel p-8 rounded-xl">
-        <div class="input-group">
-          <label for="name" class="input-label">Nombre</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="input-group">
-          <label for="email" class="input-label">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="input-group">
-          <label for="message" class="input-label">Mensaje</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-accent w-full">Enviar Mensaje</button>
-      </form>
     </div>
-  </section>
+  </Section>
+  
+  <!-- FAQ Section -->
+  <Section background="gradient">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+          Preguntas Frecuentes
+        </Title>
+        <p class="text-lg text-gray-600">
+          Respuestas a las preguntas más comunes
+        </p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto space-y-4">
+        {faqs.map(faq => (
+          <Card variant="glass" padding="lg" hover={true}>
+            <h3 class="text-lg text-primary font-bold mb-2">{faq.question}</h3>
+            <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+  
+  <!-- Social CTA -->
+  <Section size="lg">
+    <div class="container text-center">
+      <Title level={2} size="3xl" color="primary" align="center" class="mb-4">
+        Síguenos en Redes Sociales
+      </Title>
+      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        Mantente al día con nuestras actividades, eventos y noticias siguiéndonos en nuestras redes.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <Button variant="outline" size="lg" icon="📘">
+          Facebook
+        </Button>
+        <Button variant="outline" size="lg" icon="📸">
+          Instagram
+        </Button>
+        <Button variant="outline" size="lg" icon="🎥">
+          YouTube
+        </Button>
+      </div>
+    </div>
+  </Section>
 </MainLayout>
 

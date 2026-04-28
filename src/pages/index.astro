@@ -1,7 +1,10 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Hero from '../components/Hero.astro';
-import SectionCard from '../components/SectionCard.astro';
+import { Button } from '../components/ui/Button.astro';
+import { Card } from '../components/ui/Card.astro';
+import { Section } from '../components/ui/Section.astro';
+import { Title } from '../components/ui/Title.astro';
 
 const features = [
   {
@@ -23,51 +26,130 @@ const features = [
     link: '/actividades'
   }
 ];
+
+const stats = [
+  { value: '50+', label: 'Conquistadores' },
+  { value: '15+', label: 'Años de Historia' },
+  { value: '100+', label: 'Actividades' },
+  { value: '∞', label: 'Aventuras' }
+];
 ---
 
 <MainLayout title="Inicio">
+  <!-- Hero Section - WOW Experience -->
   <Hero>
-    <h1 class="font-display font-black text-white text-5xl md:text-6xl lg:text-7xl leading-none mb-6 drop-shadow-lg fade-in-up">
-      Club <span class="text-gradient">Rigel</span>
-    </h1>
-    <p class="text-lg md:text-xl text-white/90 mb-10 font-light fade-in-up stagger-2">
-      Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
-    </p>
-    <div class="flex gap-4 justify-center flex-wrap fade-in-up stagger-3">
-      <a href="/quienes-somos" class="btn btn-accent">Conócenos</a>
-      <a href="/contacto" class="btn btn-outline border-white/20 text-white hover:bg-white/10 hover:border-white">Únete Ahora</a>
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class="font-display font-black text-white text-5xl md:text-7xl lg:text-8xl leading-none mb-6 drop-shadow-2xl fade-in-up">
+        Club <span class="text-gradient">Rigel</span>
+      </h1>
+      <p class="text-xl md:text-2xl lg:text-3xl text-white/95 mb-12 font-light leading-relaxed fade-in-up stagger-2">
+        Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap fade-in-up stagger-3">
+        <Button href="/quienes-somos" variant="accent" size="lg" icon="🚀">
+          Conócenos
+        </Button>
+        <Button href="/contacto" variant="outline" size="lg" class="border-white/30 text-white hover:bg-white/15 hover:border-white">
+          Únete Ahora
+        </Button>
+      </div>
     </div>
   </Hero>
   
-  <section class="section container">
-    <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
-      <div>
-        <h2 class="text-4xl text-primary mb-6 font-bold">Bienvenidos al Club Rigel</h2>
-        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-          Somos una organización mundial dedicada al desarrollo físico, mental y espiritual de niños y jóvenes. 
-          En el Club Rigel, creemos en el potencial de cada conquistador para cambiar el mundo.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {features.map(feature => (
-          <SectionCard title={feature.title} icon={feature.icon} href={feature.link}>
-            <p>{feature.desc}</p>
-          </SectionCard>
+  <!-- Stats Section -->
+  <Section background="gradient" class="py-12">
+    <div class="container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {stats.map(stat => (
+          <div class="stat-item animate-on-scroll">
+            <div class="text-4xl md:text-5xl font-black text-primary mb-2">{stat.value}</div>
+            <div class="text-sm md:text-base text-gray-600 font-semibold uppercase tracking-wide">{stat.label}</div>
+          </div>
         ))}
       </div>
     </div>
-  </section>
-
-  <section class="section" style="background: radial-gradient(circle at top right, rgba(190, 22, 34, 0.05) 0%, transparent 40%), radial-gradient(circle at bottom left, rgba(27, 46, 82, 0.05) 0%, transparent 40%);">
+  </Section>
+  
+  <!-- Welcome Section -->
+  <Section size="xl">
     <div class="container">
-      <div class="glass-panel max-w-3xl mx-auto p-16 rounded-2xl text-center">
-        <h2 class="text-4xl text-primary mb-6 font-bold text-center">Nuestra Misión</h2>
-        <p class="text-3xl italic font-heading text-primary mt-4">
-          "El mensaje del advenimiento a todo el mundo en mi generación."
-        </p>
+      <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+        <div class="animate-on-scroll">
+          <Title level={2} size="5xl" color="primary" class="mb-6">
+            Bienvenidos al Club Rigel
+          </Title>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            Somos una organización mundial dedicada al desarrollo físico, mental y espiritual de niños y jóvenes. 
+            En el Club Rigel, creemos en el potencial de cada conquistador para cambiar el mundo.
+          </p>
+          <Button href="/historia" variant="primary" size="md">
+            Descubre Nuestra Historia
+          </Button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 animate-on-scroll">
+          {features.map(feature => (
+            <Card variant="glass" padding="lg" hover={true}>
+              <div class="text-5xl mb-4">{feature.icon}</div>
+              <h3 class="text-xl text-primary font-bold mb-3">{feature.title}</h3>
+              <p class="text-gray-600 leading-relaxed mb-4">{feature.desc}</p>
+              <Button href={feature.link} variant="ghost" size="sm" class="text-primary hover:text-accent">
+                Saber más →
+              </Button>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
-  </section>
+  </Section>
+
+  <!-- Mission Section -->
+  <Section background="dark" class="py-24">
+    <div class="container">
+      <div class="glass-dark max-w-4xl mx-auto p-12 md:p-16 rounded-3xl text-center animate-on-scroll">
+        <Title level={2} size="4xl" color="white" align="center" class="mb-8">
+          Nuestra Misión
+        </Title>
+        <p class="text-2xl md:text-3xl italic font-heading text-white/95 leading-relaxed">
+          "El mensaje del advenimiento a todo el mundo en mi generación."
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+          <Button href="/quienes-somos" variant="highlight" size="md">
+            Únete a la Misión
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+  
+  <!-- CTA Section -->
+  <Section size="lg">
+    <div class="container text-center">
+      <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+        ¿Listo para la Aventura?
+      </Title>
+      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Únete al Club Rigel y descubre un mundo de experiencias, amistades y crecimiento personal.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <Button href="/contacto" variant="accent" size="lg" icon="⭐">
+          Únete Ahora
+        </Button>
+        <Button href="/actividades" variant="outline" size="lg">
+          Ver Actividades
+        </Button>
+      </div>
+    </div>
+  </Section>
 </MainLayout>
+
+<style>
+  .stat-item {
+    transition: transform var(--transition-base);
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-5px);
+  }
+</style>
 
