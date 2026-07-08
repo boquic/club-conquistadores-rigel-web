@@ -1,0 +1,62 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const values = [
+  { icon: '⚜️', title: 'Honradez', desc: 'Actuamos con integridad en todo momento.' },
+  { icon: '🤝', title: 'Servicio', desc: 'Servimos a otros con amor y dedicación.' },
+  { icon: '🌟', title: 'Excelencia', desc: 'Buscamos la mejora continua en todo.' },
+  { icon: '❤️', title: 'Amistad', desc: 'Construimos lazos que duran toda la vida.' },
+];
+---
+
+<MainLayout title="Identidad | Historia" description="Conoce la identidad, misión, visión y valores del Club Conquistadores Rigel.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Identidad</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Los principios y propósito que definen al Club Rigel desde su fundación.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 mb-16">
+        <div>
+          <Title level={2} size="3xl" color="primary" class="mb-4">Misión</Title>
+          <p class="text-gray-600 leading-relaxed text-lg">
+            Formar jóvenes íntegros, comprometidos con su fe, su familia y su comunidad, a través de actividades que desarrollan el carácter, el liderazgo y el servicio.
+          </p>
+        </div>
+        <div>
+          <Title level={2} size="3xl" color="primary" class="mb-4">Visión</Title>
+          <p class="text-gray-600 leading-relaxed text-lg">
+            Ser un club de referencia en la región, reconocido por la excelencia de sus conquistadores y el impacto positivo en la comunidad.
+          </p>
+        </div>
+      </div>
+
+      <Title level={2} size="3xl" color="primary" align="center" class="mb-10">Nuestros Valores</Title>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map(v => (
+          <Card variant="glass" padding="lg" hover={true}>
+            <div class="text-5xl mb-4">{v.icon}</div>
+            <h3 class="text-xl text-primary font-bold mb-2">{v.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{v.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>

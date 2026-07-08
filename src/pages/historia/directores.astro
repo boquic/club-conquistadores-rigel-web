@@ -1,0 +1,41 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import DirectorCard from '../../components/ui/DirectorCard.astro';
+import Button from '../../components/ui/Button.astro';
+
+const directors = [
+  { name: 'Director Principal', role: 'Director General', email: 'director@clubrigel.org' },
+  { name: 'Subdirector', role: 'Subdirector', email: 'subdirector@clubrigel.org' },
+  { name: 'Líder de Jóvenes', role: 'Coordinador de Unidades', email: 'unidades@clubrigel.org' },
+];
+---
+
+<MainLayout title="Directores | Historia" description="Conoce al equipo de directores del Club Conquistadores Rigel.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Directores</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        El equipo de líderes comprometidos que guía y forma a cada conquistador.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {directors.map(d => (
+          <DirectorCard name={d.name} role={d.role} email={d.email} />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>

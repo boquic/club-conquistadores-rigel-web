@@ -1,0 +1,48 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import TimelineItem from '../../components/ui/TimelineItem.astro';
+import Button from '../../components/ui/Button.astro';
+
+const milestones = [
+  { date: '2010', title: 'Fundación', description: 'El Club Rigel abre sus puertas con 15 miembros iniciales, con la visión de formar líderes y servir a la comunidad.', active: true },
+  { date: '2012', title: 'Primera Investidura', description: 'Ceremonia inaugural donde los primeros conquistadores recibieron sus insignias y honores.', active: false },
+  { date: '2015', title: 'Primer Camporee Regional', description: 'Participación destacada en el Camporee Regional, obteniendo reconocimientos en especialidades y drill.', active: false },
+  { date: '2018', title: 'Expansión de Unidades', description: 'Creación de nuevas unidades: Amigos, Compañeros y Exploradores, atendiendo diferentes edades.', active: false },
+  { date: '2020', title: 'Adaptación y Resiliencia', description: 'Innovación en actividades durante tiempos desafiantes, manteniendo el espíritu conquistador vivo.', active: false },
+  { date: '2023', title: 'Actualidad', description: 'Hoy contamos con más de 50 conquistadores activos, directores comprometidos y un futuro brillante por delante.', active: false },
+];
+---
+
+<MainLayout title="Línea de Tiempo | Historia" description="Los hitos que marcaron la historia del Club Conquistadores Rigel desde su fundación.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Línea de Tiempo</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Un viaje marcado por hitos significativos y momentos inolvidables.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <div class="border-l-2 border-accent pl-8 flex flex-col gap-12">
+          {milestones.map(m => (
+            <TimelineItem date={m.date} title={m.title} active={m.active}>
+              {m.description}
+            </TimelineItem>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>

@@ -28,6 +28,17 @@ const pillars = [
   }
 ];
 
+const law = [
+  'Guardar la meditación matinal',
+  'Cumplir con la parte que me corresponde',
+  'Cuidar mi cuerpo',
+  'Mantener una conciencia limpia',
+  'Ser cortés y obediente',
+  'Andar con reverencia en la casa de Dios',
+  'Tener siempre una canción en mi corazón',
+  'Ir a cumplir la comisión de Dios',
+];
+
 const units = [
   { name: 'Amigos', age: '5-9 años', description: 'Iniciación en el mundo conquistador con actividades lúdicas' },
   { name: 'Compañeros', age: '10-11 años', description: 'Desarrollo de habilidades y especialidades básicas' },
@@ -147,6 +158,31 @@ const units = [
     </div>
   </Section>
   
+  <!-- Ley del Conquistador Section -->
+  <Section size="xl" background="dark">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-14 text-center">
+        <p class="text-highlight font-heading font-semibold uppercase tracking-widest mb-3">Nuestro Código</p>
+        <Title level={2} size="4xl" color="white" align="center" class="mb-4">
+          La Ley del Conquistador
+        </Title>
+        <p class="text-lg text-white/70">
+          Ocho principios que cada conquistador se compromete a vivir cada día.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        {law.map((item, i) => (
+          <div class="flex items-center gap-4 rounded-xl bg-white/5 border border-white/10 p-5 backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <span class="flex-shrink-0 w-10 h-10 rounded-full bg-highlight text-primary font-display font-black flex items-center justify-center">
+              {i + 1}
+            </span>
+            <span class="text-white/90 font-medium">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
   <!-- CTA Section -->
   <Section size="lg">
     <div class="container text-center">

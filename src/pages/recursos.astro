@@ -119,6 +119,35 @@ const categories = ['Todos', 'Administración', 'Formularios', 'Planificación',
     </div>
   </Section>
   
+  <!-- Pasos para unirte -->
+  <Section size="xl" background="dark">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-14 text-center">
+        <p class="text-highlight font-heading font-semibold uppercase tracking-widest mb-3">Inscripción</p>
+        <Title level={2} size="4xl" color="white" align="center" class="mb-4">
+          Cómo unirte en 4 pasos
+        </Title>
+        <p class="text-lg text-white/70">
+          Sumarte al Club Rigel es sencillo. Este es el camino desde el primer contacto hasta tu primera reunión.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        {[
+          { n: '1', title: 'Contáctanos', desc: 'Escríbenos o visítanos un sábado para conocer al equipo.' },
+          { n: '2', title: 'Completa la ficha', desc: 'Descarga y llena la ficha médica y de inscripción.' },
+          { n: '3', title: 'Trae tus útiles', desc: 'Revisa la lista de útiles para tu primera actividad.' },
+          { n: '4', title: '¡Bienvenido!', desc: 'Recibe tu unidad y comienza tu aventura conquistadora.' },
+        ].map(step => (
+          <div class="relative rounded-2xl bg-white/5 border border-white/10 p-8 backdrop-blur-sm">
+            <span class="font-display text-6xl font-black text-highlight/30 leading-none">{step.n}</span>
+            <h3 class="text-xl font-bold text-white mt-2 mb-2">{step.title}</h3>
+            <p class="text-white/70 text-sm leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
   <!-- Info Section -->
   <Section background="gradient">
     <div class="container">

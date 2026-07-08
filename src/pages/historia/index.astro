@@ -1,0 +1,97 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import Button from '../../components/ui/Button.astro';
+
+const sections = [
+  {
+    href: '/historia/identidad',
+    icon: '⚜️',
+    title: 'Identidad',
+    desc: 'Quiénes somos, nuestra misión y los valores que nos definen.',
+  },
+  {
+    href: '/historia/directores',
+    icon: '👥',
+    title: 'Directores',
+    desc: 'El equipo de líderes que guía y forma a cada conquistador.',
+  },
+  {
+    href: '/historia/linea-tiempo',
+    icon: '📅',
+    title: 'Línea de Tiempo',
+    desc: 'Los hitos que marcaron el camino del Club Rigel desde su fundación.',
+  },
+  {
+    href: '/historia/unidades',
+    icon: '🏕️',
+    title: 'Unidades',
+    desc: 'Conoce las unidades que conforman nuestro club y sus características.',
+  },
+  {
+    href: '/historia/palmares',
+    icon: '🏆',
+    title: 'Palmarés',
+    desc: 'Logros, reconocimientos y victorias que nos enorgullecen.',
+  },
+  {
+    href: '/historia/cultura-rigel',
+    icon: '🌟',
+    title: 'Cultura Rigel',
+    desc: 'Las tradiciones, costumbres y espíritu que nos hacen únicos.',
+  },
+];
+---
+
+<MainLayout title="Historia" description="Explora la historia completa del Club Conquistadores Rigel: identidad, directores, línea de tiempo, unidades, palmarés y cultura.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">
+        Nuestra Historia
+      </Title>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+        Más de una década formando líderes y sirviendo a la comunidad. Explora cada capítulo de nuestra historia.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {sections.map(s => (
+          <a href={s.href} class="group block bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-8 border border-gray-100">
+            <div class="text-5xl mb-4">{s.icon}</div>
+            <h2 class="text-2xl font-bold text-primary mb-2 group-hover:text-accent transition-colors">{s.title}</h2>
+            <p class="text-gray-600 leading-relaxed">{s.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Historia en números -->
+  <Section size="lg" background="gradient">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-12 text-center">
+        <p class="text-accent font-heading font-semibold uppercase tracking-widest mb-3">En Números</p>
+        <Title level={2} size="4xl" color="primary" align="center">
+          Nuestra huella
+        </Title>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-4xl mx-auto">
+        {[
+          { value: '2010', label: 'Año de fundación' },
+          { value: '50+', label: 'Conquistadores activos' },
+          { value: '6', label: 'Unidades' },
+          { value: '30+', label: 'Reconocimientos' },
+        ].map(stat => (
+          <div>
+            <div class="font-display text-4xl md:text-5xl font-black text-primary mb-2">{stat.value}</div>
+            <div class="text-sm text-gray-600 font-semibold uppercase tracking-wide">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+</MainLayout>

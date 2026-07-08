@@ -1,0 +1,48 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const unidades = [
+  { icon: '🌱', name: 'Amigos', ages: '6–9 años', desc: 'Los más pequeños dan sus primeros pasos en el mundo conquistador, aprendiendo valores y amistad.' },
+  { icon: '🔭', name: 'Compañeros', ages: '10–11 años', desc: 'Desarrollan habilidades prácticas, trabajo en equipo y comienzan a explorar especialidades.' },
+  { icon: '🧭', name: 'Exploradores', ages: '12–13 años', desc: 'Aventureros en formación, con mayor autonomía y responsabilidad en actividades y proyectos.' },
+  { icon: '⚜️', name: 'Conquistadores', ages: '14–15 años', desc: 'El corazón del club. Líderes en desarrollo, comprometidos con el servicio y la excelencia.' },
+  { icon: '🦅', name: 'Guías', ages: '16+ años', desc: 'Los más experimentados, que sirven como mentores y modelos para las unidades menores.' },
+];
+---
+
+<MainLayout title="Unidades | Historia" description="Conoce las unidades que conforman el Club Conquistadores Rigel y sus características.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Unidades</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Cada unidad tiene su identidad, su rango de edad y su propósito dentro del club.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {unidades.map(u => (
+          <Card variant="glass" padding="lg" hover={true}>
+            <div class="text-5xl mb-4">{u.icon}</div>
+            <h3 class="text-2xl text-primary font-bold mb-1">{u.name}</h3>
+            <p class="text-accent font-semibold text-sm mb-3">{u.ages}</p>
+            <p class="text-gray-600 leading-relaxed">{u.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>

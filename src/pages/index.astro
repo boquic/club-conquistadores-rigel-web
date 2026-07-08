@@ -27,6 +27,13 @@ const features = [
   }
 ];
 
+const units = [
+  { name: 'Amigos', age: '10 - 11 años', icon: '🌱', desc: 'Los primeros pasos en el mundo conquistador con juegos y descubrimiento.' },
+  { name: 'Compañeros', age: '12 - 13 años', icon: '🧭', desc: 'Especialidades básicas, trabajo en equipo y primeras aventuras.' },
+  { name: 'Exploradores', age: '14 - 15 años', icon: '⛰️', desc: 'Liderazgo, campamentos exigentes y especialidades avanzadas.' },
+  { name: 'Guías Mayores', age: '16+ años', icon: '⭐', desc: 'Mentoría, servicio y formación de la próxima generación de líderes.' },
+];
+
 const stats = [
   { value: '50+', label: 'Conquistadores' },
   { value: '15+', label: 'Años de Historia' },
@@ -39,8 +46,11 @@ const stats = [
   <!-- Hero Section - WOW Experience -->
   <Hero>
     <div class="text-center max-w-4xl mx-auto">
+      <p class="inline-block mb-6 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-highlight font-heading font-semibold text-sm uppercase tracking-widest fade-in-up">
+        Club de Conquistadores
+      </p>
       <h1 class="font-display font-black text-white text-5xl md:text-7xl lg:text-8xl leading-none mb-6 drop-shadow-2xl fade-in-up">
-        Club <span class="text-gradient">Rigel</span>
+        Club <span class="text-highlight">Rigel</span>
       </h1>
       <p class="text-xl md:text-2xl lg:text-3xl text-white/95 mb-12 font-light leading-relaxed fade-in-up stagger-2">
         Formando líderes, sirviendo a la comunidad, y guiando hacia el futuro.
@@ -122,6 +132,31 @@ const stats = [
     </div>
   </Section>
   
+  <!-- Unidades Section -->
+  <Section size="xl" background="light">
+    <div class="container">
+      <div class="max-w-3xl mx-auto mb-14 text-center animate-on-scroll">
+        <p class="text-accent font-heading font-semibold uppercase tracking-widest mb-3">Nuestras Unidades</p>
+        <Title level={2} size="4xl" color="primary" align="center" class="mb-4">
+          Un lugar para cada edad
+        </Title>
+        <p class="text-lg text-gray-600">
+          Organizamos a los conquistadores en unidades según su edad, para que cada uno crezca a su ritmo.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-on-scroll">
+        {units.map(unit => (
+          <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#2a4474] p-8 text-white shadow-lg hover:shadow-primary transition-all duration-300 hover:-translate-y-1">
+            <div class="text-4xl mb-4">{unit.icon}</div>
+            <h3 class="text-2xl font-bold mb-1">{unit.name}</h3>
+            <div class="text-highlight font-semibold text-sm mb-3">{unit.age}</div>
+            <p class="text-white/80 text-sm leading-relaxed">{unit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
   <!-- CTA Section -->
   <Section size="lg">
     <div class="container text-center">

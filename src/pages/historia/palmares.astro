@@ -1,0 +1,50 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const logros = [
+  { year: '2015', icon: '🥇', title: '1er lugar Camporee Regional', desc: 'Primer puesto en drill y especialidades en el Camporee Regional.' },
+  { year: '2017', icon: '🏅', title: 'Premio al Servicio Comunitario', desc: 'Reconocimiento por el impacto en proyectos de servicio a la comunidad local.' },
+  { year: '2019', icon: '🏆', title: 'Club del Año', desc: 'Distinción otorgada por la Asociación por excelencia en programación y crecimiento.' },
+  { year: '2021', icon: '⭐', title: 'Especialidades Destacadas', desc: 'Más de 30 especialidades completadas por conquistadores durante el año.' },
+  { year: '2023', icon: '🎖️', title: 'Camporee Nacional', desc: 'Participación y reconocimiento en el Camporee Nacional con representación destacada.' },
+];
+---
+
+<MainLayout title="Palmarés | Historia" description="Los logros y reconocimientos del Club Conquistadores Rigel a lo largo de su historia.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Palmarés</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Los logros y reconocimientos que reflejan el esfuerzo y dedicación de nuestros conquistadores.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {logros.map(l => (
+          <Card variant="glass" padding="lg" hover={true}>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-4xl">{l.icon}</span>
+              <span class="text-accent font-bold text-sm uppercase tracking-widest">{l.year}</span>
+            </div>
+            <h3 class="text-xl text-primary font-bold mb-2">{l.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{l.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>

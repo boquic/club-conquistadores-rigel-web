@@ -1,0 +1,48 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Title from '../../components/ui/Title.astro';
+import Card from '../../components/ui/Card.astro';
+import Button from '../../components/ui/Button.astro';
+
+const cultura = [
+  { icon: '🔥', title: 'Espíritu Conquistador', desc: 'Una actitud de perseverancia, fe y entusiasmo que define a cada miembro del club.' },
+  { icon: '🎵', title: 'Himnos y Cánticos', desc: 'Canciones que unen al club en cada reunión, campamento y ceremonia.' },
+  { icon: '🏕️', title: 'Tradición de Campamentos', desc: 'Los campamentos anuales son el corazón de nuestra cultura, donde se forjan amistades para toda la vida.' },
+  { icon: '🎗️', title: 'Ceremonias de Investidura', desc: 'Momentos solemnes donde los conquistadores reciben sus insignias y renuevan su compromiso.' },
+  { icon: '🤲', title: 'Servicio como Estilo de Vida', desc: 'Servir no es una actividad, es parte de quiénes somos como club y como personas.' },
+  { icon: '📖', title: 'Fe y Valores', desc: 'Nuestra fe guía cada decisión, actividad y relación dentro del club.' },
+];
+---
+
+<MainLayout title="Cultura Rigel | Historia" description="Las tradiciones, costumbres y espíritu que hacen único al Club Conquistadores Rigel.">
+  <Section background="dark" class="py-20">
+    <div class="container text-center">
+      <p class="text-accent font-semibold uppercase tracking-widest mb-3">Historia</p>
+      <Title level={1} size="5xl" color="white" align="center" class="mb-6">Cultura Rigel</Title>
+      <p class="text-xl text-white/80 max-w-2xl mx-auto">
+        Las tradiciones, costumbres y el espíritu que nos hacen únicos y nos unen como familia.
+      </p>
+    </div>
+  </Section>
+
+  <Section size="xl">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {cultura.map(c => (
+          <Card variant="glass" padding="lg" hover={true}>
+            <div class="text-5xl mb-4">{c.icon}</div>
+            <h3 class="text-xl text-primary font-bold mb-2">{c.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{c.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section size="sm">
+    <div class="container text-center">
+      <Button href="/historia" variant="outline" size="md">← Volver a Historia</Button>
+    </div>
+  </Section>
+</MainLayout>
